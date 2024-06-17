@@ -4,11 +4,12 @@ import os
 
 from config.cfglist import CfgList
 from config.cfgsection import CfgSection
-from config.literals import HOME_FOLDER_NAME, SETTING_FILE_NAME
+from config.literals import HOME_FOLDER_NAME, SETTING_FILE_NAME, MODELS_FOLDER_NAME
 from util import osutils
 
 dir_app = osutils.get_app_home_dir(HOME_FOLDER_NAME)
 dir_app_setting = os.path.join(dir_app, SETTING_FILE_NAME)
+dir_app_models = os.path.join(dir_app, MODELS_FOLDER_NAME)
 
 
 def create_config(path):
@@ -18,10 +19,9 @@ def create_config(path):
     section_ai_text = CfgSection.AI.value
 
     config.add_section(section_general_text)
-    config.set(section_general_text, CfgList.INIT.value, 'True')
+    config.set(section_general_text, CfgList.INIT.value, 'False')
 
     config.add_section(section_ai_text)
-    config.set(section_ai_text, CfgList.AI_MODEL_PATH.value, 'models')
     config.set(section_ai_text, CfgList.AI_MODEL_CUSTOM_PATH.value, '.')
     config.set(section_ai_text, CfgList.USE_CUSTOM_PATH.value, 'False')
 
