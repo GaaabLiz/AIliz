@@ -1,0 +1,4 @@
+
+
+OLLAMA_PORT = "11434"
+OLLAMA_HTTP_LOCALHOST_URL = "http://localhost:" + OLLAMA_PORT
