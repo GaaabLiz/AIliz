@@ -1,5 +1,6 @@
 import json
 
+import requests
 import rich
 import typer
 
@@ -71,5 +72,30 @@ def download_required_models(ai_power: AiPower, actual_list: list[OllamaModel]):
             rich.print("Model [bold]" + model + "[/bold] is already installed.")
 
 
-def download_model():
-    pass
+def download_model(ollama_url: str, model_name: str):
+    headers = {
+        'Content-Type': 'application/json'
+    }
+    data = {
+        "name": model_name,
+        "stream": True
+    }
+
+    response = requests.post(ollama_url, headers=headers, data=json.dumps(data), stream=True)
+
+    total = None
+    completed = 0
+
+    for line in response.iter_lines():
+        if line:
+            status = json.loads(line.decode('utf-8'))
+            if 'total' in status and 'completed' in status:
+                total = status['total']
+                completed = status['completed']
+                percentage = (completed / total) * 100
+                print(f"Downloading: {percentage:.2f}% complete")
+            elif status.get("status") == "success":
+                print("Download complete!")
+                break
+            else:
+                print(f"Status: {status.get('status')}")
