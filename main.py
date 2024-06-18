@@ -9,6 +9,7 @@ app = typer.Typer()
 @app.command()
 def scan_image(
         image_path: str,
+        ai_scan: bool = False,
         add_comment_metadata: bool = False,
         create_ailiz_file: bool = False,
 ):

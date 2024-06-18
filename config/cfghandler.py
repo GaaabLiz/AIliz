@@ -22,8 +22,7 @@ def create_config(path):
     config.set(section_general_text, CfgList.INIT.value, 'False')
 
     config.add_section(section_ai_text)
-    config.set(section_ai_text, CfgList.AI_MODEL_CUSTOM_PATH.value, '.')
-    config.set(section_ai_text, CfgList.USE_CUSTOM_PATH.value, 'False')
+    config.set(section_ai_text, CfgList.OLLAMA_URL_SET.value, 'False')
 
     try:
         with open(path, 'w') as configfile:

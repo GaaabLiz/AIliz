@@ -15,6 +15,11 @@ QS_OLLAMA_URL_NAME = "ollama_url"
 QS_OLLAMA_URL_MSG = f"Enter the URL of the ollama server (ex http://xxx.xxx.xxx.xxx:{OLLAMA_PORT}):"
 QS_OLLAMA_URL_DEFAULT = OLLAMA_HTTP_LOCALHOST_URL
 
+QS_AI_POWER_NAME = "ai_power"
+QS_AI_POWER_CHOICES = ["Low", "Medium", "High"]
+QS_AI_POWER_DEFAULT = "Medium"
+QS_AI_POWER_MSG = "Select the size of the AI model to be used."
+
 
 def ask_ollama_url():
     questions = [
@@ -41,6 +46,15 @@ def ask_ollama_location():
         print("An error occurred while asking for the ollama location. Exiting...")
         raise typer.Exit()
     return def_url
+
+
+def ask_ai_power():
+    questions = [
+        inquirer.List(QS_AI_POWER_NAME, message=QS_AI_POWER_MSG, choices=QS_AI_POWER_CHOICES, default=QS_AI_POWER_DEFAULT),
+    ]
+    answers = inquirer.prompt(questions)
+    return answers[QS_AI_POWER_NAME]
+
 
 
 
