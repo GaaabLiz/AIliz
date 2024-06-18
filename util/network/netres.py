@@ -1,9 +1,11 @@
-from network.netrestype import NetResponseType
+from requests import Response
+
+from util.network.netrestype import NetResponseType
 
 
 class NetResponse:
 
-    def __init__(self, response, response_type: NetResponseType, exception=None):
+    def __init__(self, response: Response | None, response_type: NetResponseType, exception=None):
         self.response = response
         self.hasResponse = self.response is not None
         if self.hasResponse:

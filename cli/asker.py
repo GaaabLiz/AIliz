@@ -1,7 +1,7 @@
 import inquirer
 import typer
 
-from ai.ollamaliz import OLLAMA_PORT, OLLAMA_HTTP_LOCALHOST_URL
+from ai.ollamapi import OLLAMA_PORT, OLLAMA_HTTP_LOCALHOST_URL
 from config.cfghandler import write_config
 from config.cfglist import CfgList
 from config.cfgsection import CfgSection

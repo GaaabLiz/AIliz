@@ -1,12 +1,9 @@
-import os
-
-import inquirer
 import typer
 
-from ai.ollamaliz import check_ollama_status, check_ollama_status2
+from ai.ollamapi import check_ollama_status
 from cli.asker import ask_ollama_location, ask_ai_power
 from config.cfghandler import *
-from network.netrestype import NetResponseType
+from core.ollamaliz import check_ollama, download_models
 from util import osutils
 from rich import print
 
@@ -62,29 +59,11 @@ def setup_ollama_location():
 def setup_ai_power():
     power = ask_ai_power()
     write_config(CfgSection.AI.value, CfgList.AI_POWER.value, power)
-    pass
 
 
 def setup_ollama_models():
     check_ollama()
-
-
-def check_ollama():
-    url_set = read_config(CfgSection.AI.value, CfgList.OLLAMA_URL_SET.value, True)
-    if url_set is False:
-        print("Ollama url was not set. Please re-run the application with init command.")
-        raise typer.Exit()
-    print("Checking ollama server status...")
-    url = read_config(CfgSection.AI.value, CfgList.OLLAMA_URL.value)
-    response = check_ollama_status2(url)
-    if response.is_successful():
-        print("Ollama server is running.")
-    else:
-        error = response.get_error()
-        print("Ollama server is not running or some error occurred: " + "[red]" + error + "[/red]")
-        print("Please check the server and try again.")
-        raise typer.Exit()
-
+    download_models()
 
 
 def exec_init():
