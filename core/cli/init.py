@@ -1,7 +1,7 @@
 import typer
 
 from core.util.asker import ask_ollama_location, ask_ai_power
-from config.cfghandler import *
+from core.util.cfgutils import *
 from core.controller.ollamaliz import check_ollama, download_models
 from util import osutils
 from rich import print

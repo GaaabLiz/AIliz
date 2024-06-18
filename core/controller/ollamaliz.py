@@ -4,9 +4,9 @@ import typer
 
 from core.model.ollama_model import OllamaModel
 from util.ai.ollamapi import check_ollama_status, get_installed_models
-from config.cfghandler import read_config
-from config.cfglist import CfgList
-from config.cfgsection import CfgSection
+from core.util.cfgutils import read_config
+from core.enum.cfglist import CfgList
+from core.enum.cfgsection import CfgSection
 
 
 def check_ollama():

@@ -5,6 +5,8 @@ import rich
 
 from dotenv import load_dotenv
 
+from util.ai import ollamapi
+
 
 class TestOllama(unittest.TestCase):
 
@@ -14,11 +16,11 @@ class TestOllama(unittest.TestCase):
         pass
 
     def test_connection(self):
-        res = check_ollama_status(self.ollama_url)
+        res = ollamapi.check_ollama_status(self.ollama_url)
         self.assertTrue(res.is_successful())
 
     def test_get_models(self):
-        res = get_installed_models(self.ollama_url)
+        res = ollamapi.get_installed_models(self.ollama_url)
         self.assertTrue(res.is_successful())
         rich.print_json(res.response.text)
 

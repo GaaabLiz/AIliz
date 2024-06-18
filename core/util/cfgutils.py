@@ -2,9 +2,9 @@
 import configparser
 import os
 
-from config.cfglist import CfgList
-from config.cfgsection import CfgSection
-from config.literals import HOME_FOLDER_NAME, SETTING_FILE_NAME, MODELS_FOLDER_NAME
+from core.enum.cfglist import CfgList
+from core.enum.cfgsection import CfgSection
+from core.enum.literals import HOME_FOLDER_NAME, SETTING_FILE_NAME, MODELS_FOLDER_NAME
 from util import osutils
 
 dir_app = osutils.get_app_home_dir(HOME_FOLDER_NAME)
