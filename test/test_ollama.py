@@ -1,12 +1,16 @@
+import os
 import unittest
 
-from ai.ollamapi import *
+import rich
+
+from dotenv import load_dotenv
 
 
 class TestOllama(unittest.TestCase):
 
     def setUp(self):
-        self.ollama_url = "http://192.168.0.205:11434"
+        load_dotenv()
+        self.ollama_url = os.getenv('OLLAMA_URL')
         pass
 
     def test_connection(self):
@@ -16,11 +20,7 @@ class TestOllama(unittest.TestCase):
     def test_get_models(self):
         res = get_installed_models(self.ollama_url)
         self.assertTrue(res.is_successful())
-
-
-
-
-
+        rich.print_json(res.response.text)
 
 
 if __name__ == "__main__":

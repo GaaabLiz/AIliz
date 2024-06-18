@@ -2,11 +2,11 @@ import json
 
 import typer
 
-from ai.ollamapi import check_ollama_status, get_installed_models
+from core.model.ollama_model import OllamaModel
+from util.ai.ollamapi import check_ollama_status, get_installed_models
 from config.cfghandler import read_config
 from config.cfglist import CfgList
 from config.cfgsection import CfgSection
-from model.ollama_model import OllamaModel
 
 
 def check_ollama():
