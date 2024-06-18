@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 from util.ai import ollamapi
 
 
-class TestOllama(unittest.TestCase):
+class TestOllamaApi(unittest.TestCase):
 
     def setUp(self):
         load_dotenv()

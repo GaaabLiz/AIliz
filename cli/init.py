@@ -1,8 +1,8 @@
 import typer
 
-from core.util.asker import ask_ollama_location, ask_ai_power
+from cli.util.asker import ask_ollama_location, ask_ai_power
 from core.util.cfgutils import *
-from core.controller.ollamaliz import check_ollama, download_models
+from core.controller.ollamaliz import check_ollama, download_models_list, download_required_models
 from util import osutils
 from rich import print
 
@@ -46,10 +46,12 @@ def delete_init():
 
 def setup_ollama_location():
     status = read_config(CfgSection.AI.value, CfgList.OLLAMA_URL_SET.value, True)
+    last_url = read_config(CfgSection.AI.value, CfgList.OLLAMA_URL_LAST.value)
     if not status:
-        url = ask_ollama_location()
+        url = ask_ollama_location(last_url)
         write_config(CfgSection.AI.value, CfgList.OLLAMA_URL.value, url)
         write_config(CfgSection.AI.value, CfgList.OLLAMA_URL_SET.value, "True")
+        write_config(CfgSection.AI.value, CfgList.OLLAMA_URL_LAST.value, url)
         print("Ollama url set to: ", url)
     else:
         print("Ollama url already set.")
@@ -62,7 +64,10 @@ def setup_ai_power():
 
 def setup_ollama_models():
     check_ollama()
-    download_models()
+    ollama_url: str = read_config(CfgSection.AI.value, CfgList.OLLAMA_URL.value)
+    ai_power = read_config(CfgSection.AI.value, CfgList.AI_POWER.value)
+    model_list = download_models_list(ollama_url)
+    download_required_models(ai_power, model_list)
 
 
 def exec_init():

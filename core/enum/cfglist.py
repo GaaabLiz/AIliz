@@ -9,3 +9,4 @@ class CfgList(Enum):
     USE_CUSTOM_PATH = "use_custom_path"
     OLLAMA_URL = "ollama_url"
     OLLAMA_URL_SET = "ollama_url_set"
+    OLLAMA_URL_LAST = "ollama_url_last"

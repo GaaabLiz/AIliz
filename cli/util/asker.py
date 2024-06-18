@@ -1,6 +1,8 @@
 import inquirer
 import typer
 
+from core.enum.ai_power import AiPower
+from core.util.cfgutils import DEFAULT_NO_VALUE
 from util.ai.ollamapi import OLLAMA_PORT, OLLAMA_HTTP_LOCALHOST_URL
 
 QS_OLLAMA_LOC_NAME = "ollama_location"
@@ -13,8 +15,8 @@ QS_OLLAMA_URL_MSG = f"Enter the URL of the ollama server (ex http://xxx.xxx.xxx.
 QS_OLLAMA_URL_DEFAULT = OLLAMA_HTTP_LOCALHOST_URL
 
 QS_AI_POWER_NAME = "ai_power"
-QS_AI_POWER_CHOICES = ["Low", "Medium", "High"]
-QS_AI_POWER_DEFAULT = "Medium"
+QS_AI_POWER_CHOICES = [AiPower.LOW.value, AiPower.MEDIUM.value, AiPower.HIGH.value]
+QS_AI_POWER_DEFAULT = AiPower.MEDIUM.value
 QS_AI_POWER_MSG = "Select the size of the AI model to be used."
 
 
@@ -26,10 +28,14 @@ def ask_ollama_url():
     return answers[QS_OLLAMA_URL_NAME]
 
 
-def ask_ollama_location():
+def ask_ollama_location(last_inserted: str = DEFAULT_NO_VALUE):
     def_url = ""
+    if last_inserted != DEFAULT_NO_VALUE:
+        default = last_inserted
+    else:
+        default = QS_OLLAMA_LOC_DEFAULT
     questions = [
-        inquirer.List(QS_OLLAMA_LOC_NAME, message=QS_OLLAMA_LOC_MSG, choices=QS_OLLAMA_LOC_CHOICES, default=QS_OLLAMA_LOC_DEFAULT),
+        inquirer.List(QS_OLLAMA_LOC_NAME, message=QS_OLLAMA_LOC_MSG, choices=QS_OLLAMA_LOC_CHOICES, default=default),
     ]
     answers = inquirer.prompt(questions)
     if answers[QS_OLLAMA_LOC_NAME] == QS_OLLAMA_LOC_CHOICES[1]:

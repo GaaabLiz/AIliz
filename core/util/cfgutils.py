@@ -11,6 +11,8 @@ dir_app = osutils.get_app_home_dir(HOME_FOLDER_NAME)
 dir_app_setting = os.path.join(dir_app, SETTING_FILE_NAME)
 dir_app_models = os.path.join(dir_app, MODELS_FOLDER_NAME)
 
+DEFAULT_NO_VALUE = "null"
+
 
 def create_config(path):
     config = configparser.ConfigParser()
@@ -23,6 +25,7 @@ def create_config(path):
 
     config.add_section(section_ai_text)
     config.set(section_ai_text, CfgList.OLLAMA_URL_SET.value, 'False')
+    config.set(section_ai_text, CfgList.OLLAMA_URL_LAST.value, DEFAULT_NO_VALUE)
 
     try:
         with open(path, 'w') as configfile:
