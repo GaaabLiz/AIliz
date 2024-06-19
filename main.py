@@ -1,3 +1,5 @@
+from typing import Annotated, Optional
+
 import typer
 
 import cli.init
@@ -20,11 +22,12 @@ def scan_image(
 def media_org(
         input_path: str,
         output_path: str,
+        chooser: bool = False,
         add_comment_metadata: bool = False,
         create_ailiz_file: bool = False,
 ):
     cli.init.check_init()
-    cli.media.organize_media(input_path, output_path, add_comment_metadata, create_ailiz_file)
+    cli.media.organize_media(input_path, output_path, chooser, add_comment_metadata, create_ailiz_file)
 
 
 @app.command()
