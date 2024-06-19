@@ -1,7 +1,10 @@
 import datetime
 import os
+import platform
 import shutil
 import subprocess
+from typing import Callable, List
+from datetime import datetime
 
 
 def get_home_dir():
@@ -58,6 +61,8 @@ def check_path_2(path):
     # Check if the path is a directory
     if not os.path.isdir(path):
         raise NotADirectoryError(f'Path {path} is not a directory!')
+    if not os.access(path, os.W_OK):
+        raise PermissionError(f'Path {path} is not writable!')
 
 
 def get_second_to_last_directory(path):
@@ -134,4 +139,77 @@ def has_disk_free_space(pathOfDisk, mbFree):
         return False
 
 
+def get_free_space_mb(directory):
+    statvfs = os.statvfs(directory)
+    # Calculate the free space in bytes and convert to megabytes
+    free_space = statvfs.f_frsize * statvfs.f_bavail / (1024 * 1024)
+    return free_space
 
+
+def get_directory_size(path):
+    total_size = 0
+    for dirpath, dirnames, filenames in os.walk(path):
+        for f in filenames:
+            fp = os.path.join(dirpath, f)
+            total_size += os.path.getsize(fp)
+    return total_size / (1024 * 1024)
+
+
+def check_move_dirs_free_space(src_path, dst_path) -> bool:
+    # Calculate the size of the source directory
+    src_size_mb = get_directory_size(src_path)
+    # Get the free space of the destination directory
+    free_space_mb = get_free_space_mb(dst_path)
+    # Check if there is enough space
+    return free_space_mb >= src_size_mb
+
+
+def scan_directory(path: str, on_file, on_folder):
+    for root, dirs, files in os.walk(path):
+        for file in files:
+            on_file(file)
+        for dir in dirs:
+            scan_directory(os.path.join(root, dir), on_file, on_folder)
+
+
+def scan_directory_match_bool(path: str, to_be_add: Callable[[str], bool]) -> List[str]:
+    matching_files = []
+    for root, dirs, files in os.walk(path):
+        for file in files:
+            file_path = os.path.join(root, file)
+            if to_be_add(file_path):
+                matching_files.append(file_path)
+    return matching_files
+
+
+def is_image_file(path: str) -> bool:
+    image_extensions = ['.png', '.jpg', '.jpeg', '.gif', '.bmp', '.tiff', '.svg']
+    return os.path.splitext(path)[1] in image_extensions
+
+
+def is_file_dup_in_dir(path:str, file_name:str) -> bool:
+    for root, dirs, files in os.walk(path):
+        if file_name in files:
+            return True
+    return False
+
+
+def get_file_c_date(path_to_file):
+    """
+    Try to get the date that a file was created, falling back to when it was
+    last modified if that isn't possible.
+    See http://stackoverflow.com/a/39501288/1709587 for explanation.
+    """
+    if platform.system() == 'Windows':
+        timestamp = os.path.getctime(path_to_file)
+    else:
+        stat = os.stat(path_to_file)
+        try:
+            timestamp = stat.st_birthtime
+        except AttributeError:
+            # We're probably on Linux. No easy way to get creation dates here,
+            # so we'll settle for when its content was last modified.
+            timestamp = stat.st_mtime
+
+    # Convert timestamp to datetime object
+    return datetime.fromtimestamp(timestamp)

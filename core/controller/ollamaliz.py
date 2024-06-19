@@ -69,7 +69,7 @@ def download_required_models(ai_power: AiPower, actual_list: list[OllamaModel]):
             print("Downloading model: ", model)
             # download_model(model)
         else:
-            rich.print("Model [bold]" + model + "[/bold] is already installed.")
+            rich.print("Model [bold blue]" + model + "[/bold blue] is already installed.")
 
 
 def download_model(ollama_url: str, model_name: str):

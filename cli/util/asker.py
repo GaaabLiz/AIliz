@@ -2,6 +2,7 @@ import inquirer
 import typer
 
 from core.enum.ai_power import AiPower
+from core.enum.media_path_format import MediaPathFormat
 from core.util.cfgutils import DEFAULT_NO_VALUE
 from util.ai.ollamapi import OLLAMA_PORT, OLLAMA_HTTP_LOCALHOST_URL
 
@@ -58,6 +59,24 @@ def ask_ai_power():
     answers = inquirer.prompt(questions)
     return answers[QS_AI_POWER_NAME]
 
+
+def ask_yes_no(question: str):
+    questions = [
+        inquirer.Confirm('yes_no', message=question),
+    ]
+    answers = inquirer.prompt(questions)
+    return answers['yes_no']
+
+
+def ask_which_media_format(message: str) -> MediaPathFormat:
+    questions = [
+        inquirer.List('media_format',
+                      message=message,
+                      choices=[MediaPathFormat.OUTPUT_FOLDER.value, MediaPathFormat.IMAGE_YEAR_MONTH_1.value],
+                      ),
+    ]
+    answers = inquirer.prompt(questions)
+    return MediaPathFormat(answers['media_format'])
 
 
 

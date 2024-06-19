@@ -1,6 +1,7 @@
 import typer
 
 import cli.init
+import cli.media
 
 app = typer.Typer()
 
@@ -16,13 +17,14 @@ def scan_image(
 
 
 @app.command()
-def media_move(
+def media_org(
         input_path: str,
         output_path: str,
         add_comment_metadata: bool = False,
         create_ailiz_file: bool = False,
 ):
     cli.init.check_init()
+    cli.media.organize_media(input_path, output_path, add_comment_metadata, create_ailiz_file)
 
 
 @app.command()
