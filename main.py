@@ -1,9 +1,8 @@
-from typing import Annotated, Optional
-
 import typer
 
-import cli.init
-import cli.media
+import core.controller.init
+import core.controller.media
+from core.controller.eagle_imp import *
 
 app = typer.Typer()
 
@@ -15,7 +14,7 @@ def scan_image(
         add_comment_metadata: bool = False,
         create_ailiz_file: bool = False,
 ):
-    cli.init.check_init()
+    core.controller.init.check_init()
 
 
 @app.command()
@@ -26,13 +25,25 @@ def media_org(
         add_comment_metadata: bool = False,
         create_ailiz_file: bool = False,
 ):
-    cli.init.check_init()
-    cli.media.organize_media(input_path, output_path, chooser, add_comment_metadata, create_ailiz_file)
+    core.controller.init.check_init()
+    core.controller.media.organize_media(input_path, output_path, chooser, add_comment_metadata, create_ailiz_file)
+
+
+@app.command()
+def eagle_imp(
+        input_path: str,
+        ai_comment: bool = False,
+        ai_tag: bool = False,
+        ai_metadata: bool = False,
+        ai_rename: bool = False,
+):
+    core.controller.init.check_init()
+    eagle_dir_importer(input_path, ai_comment, ai_tag, ai_metadata, ai_rename)
 
 
 @app.command()
 def init_clear():
-    cli.init.delete_init()
+    core.controller.init.delete_init()
 
 
 @app.command()
@@ -40,8 +51,8 @@ def init():
     """
     Initialize the application on your system by creating the configuration file.
     """
-    cli.init.check_init(True)
-    cli.init.exec_init()
+    core.controller.init.check_init(True)
+    core.controller.init.exec_init()
 
 
 if __name__ == "__main__":

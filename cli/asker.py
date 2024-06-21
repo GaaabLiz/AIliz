@@ -4,7 +4,7 @@ import typer
 from core.enum.ai_power import AiPower
 from core.enum.media_path_format import MediaPathFormat
 from core.util.cfgutils import DEFAULT_NO_VALUE
-from util.ai.ollamapi import OLLAMA_PORT, OLLAMA_HTTP_LOCALHOST_URL
+from core.api.data.ollamapi import OLLAMA_PORT, OLLAMA_HTTP_LOCALHOST_URL
 
 QS_OLLAMA_LOC_NAME = "ollama_location"
 QS_OLLAMA_LOC_CHOICES = ["On this machine (localhost)", "Remote server", "Nowhere"]

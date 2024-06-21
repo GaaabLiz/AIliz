@@ -9,6 +9,7 @@ from util.datautils import convert_months_number_to_str
 class AilizImage:
 
     def __init__(self, image_path):
+        self.ai_tags = None
         self.path = image_path
         self.file_name = os.path.basename(self.path)
         self.extension = os.path.splitext(image_path)[1].lower()
@@ -32,6 +33,9 @@ class AilizImage:
             self.output_path = output_path
         elif formato == MediaPathFormat.IMAGE_YEAR_MONTH_2:
             self.output_path = os.path.join(output_path, str(self.year), str(self.month))
+
+    def set_ai_tags(self, tags):
+        self.ai_tags = tags
 
     # def get_creation_time(self):
     #     try:

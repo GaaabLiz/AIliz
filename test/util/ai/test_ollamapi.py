@@ -5,7 +5,7 @@ import rich
 
 from dotenv import load_dotenv
 
-from util.ai import ollamapi
+from core.api.data import ollamapi
 
 
 class TestOllamaApi(unittest.TestCase):

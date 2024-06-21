@@ -1,8 +1,8 @@
 import typer
 
-from cli.util.asker import ask_ollama_location, ask_ai_power
+from cli.asker import ask_ollama_location, ask_ai_power
 from core.util.cfgutils import *
-from core.controller.ollamaliz import check_ollama, download_models_list, download_required_models
+from core.api.service.ollamaliz import check_ollama, download_models_list, download_required_models
 from util import osutils
 from rich import print
 

@@ -1,14 +1,10 @@
 import os
-import unittest
 from unittest import TestCase
-
-import rich
 
 from dotenv import load_dotenv
 
 from core.enum.ai_power import AiPower
-from util.ai import ollamapi
-from core.controller import ollamaliz
+from core.api.service import ollamaliz
 
 
 class TestOllamaliz(TestCase):

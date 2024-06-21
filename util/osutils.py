@@ -65,6 +65,17 @@ def check_path_2(path):
         raise PermissionError(f'Path {path} is not writable!')
 
 
+def check_path_file(path:str):
+    if not os.path.exists(path):
+        raise FileNotFoundError(f"File {path} does not exist!")
+    if not os.access(path, os.R_OK):
+        raise PermissionError(f"File {path} is not readable!")
+    if not os.path.isfile(path):
+        raise NotADirectoryError(f"Path {path} is not a file!")
+    if not os.access(path, os.W_OK):
+        raise PermissionError(f"File {path} is not writable!")
+
+
 def get_second_to_last_directory(path):
     # Divide il percorso in una lista di componenti
     path_components = os.path.normpath(path).split(os.sep)
@@ -185,6 +196,25 @@ def scan_directory_match_bool(path: str, to_be_add: Callable[[str], bool]) -> Li
 def is_image_file(path: str) -> bool:
     image_extensions = ['.png', '.jpg', '.jpeg', '.gif', '.bmp', '.tiff', '.svg']
     return os.path.splitext(path)[1] in image_extensions
+
+
+def is_video_file(path: str) -> bool:
+    video_extensions = ['.mp4', '.avi', '.mov', '.mkv', '.flv', '.wmv', '.webm', '.3gp']
+    return os.path.splitext(path)[1] in video_extensions
+
+
+def is_audio_file(path: str) -> bool:
+    audio_extensions = ['.mp3', '.wav', '.ogg', '.flac', '.wma', '.aac', '.m4a']
+    return os.path.splitext(path)[1] in audio_extensions
+
+
+def is_text_file(path: str) -> bool:
+    text_extensions = ['.txt', '.doc', '.docx', '.pdf', '.odt', '.rtf', '.tex']
+    return os.path.splitext(path)[1] in text_extensions
+
+
+def is_image_or_video_file(path: str) -> bool:
+    return is_image_file(path) or is_video_file(path)
 
 
 def is_file_dup_in_dir(path:str, file_name:str) -> bool:

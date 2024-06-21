@@ -1,12 +1,9 @@
 import os
-import shutil
-from typing import Annotated, Optional
 
 import rich
 import typer
 
-from cli.util.asker import ask_yes_no, ask_which_media_format
-from core.gui.chooser import Chooser
+from cli.asker import ask_yes_no, ask_which_media_format
 from core.model.ailiz_image import AilizImage
 from util import osutils
 
@@ -62,15 +59,12 @@ def organize_media(
         os.makedirs(image.output_path, exist_ok=True)
 
     # move the images or open the chooser
-    if chooser:
-        chooser = Chooser(input_images)
-    else:
-        for image in input_images:
-            full_path = os.path.join(image.output_path, image.file_name)
-            duplicate = os.path.exists(full_path)
-            if duplicate:
-                rich.print(f"Skipping [bold]{image.file_name}[/bold] because it already exists in the output directory.")
-            else:
-                rich.print(f"Moving [green]{image.file_name}[/green] to {image.output_path}")
-                # shutil.move(image.path, image.output_path)
+    for image in input_images:
+        full_path = os.path.join(image.output_path, image.file_name)
+        duplicate = os.path.exists(full_path)
+        if duplicate:
+            rich.print(f"Skipping [bold]{image.file_name}[/bold] because it already exists in the output directory.")
+        else:
+            rich.print(f"Moving [green]{image.file_name}[/green] to {image.output_path}")
+            # shutil.move(image.path, image.output_path)
 

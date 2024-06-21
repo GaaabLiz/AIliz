@@ -1,0 +1,400 @@
+{
+  "status": "success",
+  "data": {
+    "folders": [
+      {
+        "id": "32455218-9e79-61ca-7e1d-034c0ed9f33b",
+        "name": "Poster Design",
+        "description": "",
+        "children": [
+          {
+            "id": "c89b30aa-b951-080c-0139-c2ea3f1aa549",
+            "name": "Poster Design 2",
+            "description": "",
+            "children": [],
+            "modificationTime": 1487586529221,
+            "tags": [],
+            "iconColor": "orange",
+            "password": "",
+            "passwordTips": "",
+            "coverId": "850b5be2-73be-5ab5-d96b-d16d1c4baef4",
+            "orderBy": "MANUAL",
+            "sortIncrease": true
+          }
+        ],
+        "modificationTime": 1487586362385,
+        "tags": [],
+        "iconColor": "red",
+        "password": "",
+        "passwordTips": "",
+        "coverId": "a387c5d6-5c27-4f1e-96d1-af7ae0256887",
+        "orderBy": "MANUAL",
+        "sortIncrease": true
+      },
+      {
+        "id": "2589f314-4973-e688-7ae0-9ea59949fdca",
+        "name": "Business Card Design",
+        "description": "",
+        "children": [],
+        "modificationTime": 1494390324202,
+        "tags": [
+          "Business Card"
+        ],
+        "iconColor": "yellow",
+        "password": "",
+        "passwordTips": "",
+        "coverId": "9948622c-1734-cd31-cf64-af5284675b29"
+      },
+      {
+        "id": "f912f591-000b-2be0-0bf4-e01229a36737",
+        "name": "Industrial",
+        "description": "",
+        "children": [],
+        "modificationTime": 1494396692476,
+        "tags": [
+          "Industrial",
+          "Loft",
+          "Interior"
+        ],
+        "iconColor": "green",
+        "password": "",
+        "passwordTips": "",
+        "coverId": "d18dad7d-6904-5e4d-1481-9335d675e66b",
+        "orderBy": "MANUAL",
+        "sortIncrease": true
+      },
+      {
+        "id": "1b31d97a-3a4a-eaf8-4fa3-06701952055e",
+        "name": "Urban Art",
+        "description": "",
+        "children": [],
+        "modificationTime": 1494390919034,
+        "tags": [
+          "Urban Art",
+          "Street Art"
+        ],
+        "iconColor": "aqua",
+        "password": "",
+        "passwordTips": ""
+      },
+      {
+        "id": "046678f7-b671-940b-4bf8-e7496a0e08b5",
+        "name": "Industrial Design",
+        "description": "",
+        "children": [],
+        "modificationTime": 1494394412374,
+        "tags": [],
+        "iconColor": "blue",
+        "password": "",
+        "passwordTips": "",
+        "coverId": "7cb9cf92-55e2-d94e-bbcd-e51471abace3"
+      },
+      {
+        "id": "d0cb83e6-d5ce-b7b1-0d3d-51966a979870",
+        "name": "Building Design",
+        "description": "",
+        "children": [],
+        "modificationTime": 1494395202363,
+        "tags": [],
+        "iconColor": "purple",
+        "password": "",
+        "passwordTips": "",
+        "coverId": "8acdd268-f7e8-26c0-d514-7bf85e11b2d3",
+        "orderBy": "NAME",
+        "sortIncrease": true
+      },
+      {
+        "id": "JMMYPFRJEOWBE",
+        "name": "Advertising Design",
+        "description": "",
+        "children": [],
+        "modificationTime": 1538196878863,
+        "tags": [],
+        "iconColor": "pink",
+        "password": "",
+        "passwordTips": "",
+        "orderBy": "MANUAL",
+        "sortIncrease": true
+      },
+      {
+        "id": "ecd7e099-956a-4c39-8cb7-c1ca3bbe165a",
+        "name": "Cover Design",
+        "description": "",
+        "children": [],
+        "modificationTime": 1524732016241,
+        "tags": [],
+        "password": "dHA2dTRjbDY=",
+        "passwordTips": "my name"
+      },
+      {
+        "id": "b2c109cc-d748-0056-f667-27c1d03d9b3a",
+        "name": "Illustration Design",
+        "description": "",
+        "children": [
+          {
+            "id": "JTFIUSP4MVTZC",
+            "name": "Uncategorized",
+            "description": "",
+            "children": [],
+            "modificationTime": 1552984468168,
+            "tags": [],
+            "icon": "graph",
+            "password": "",
+            "passwordTips": "",
+            "coverId": "JSM0JZYBVPZNF",
+            "orderBy": "MANUAL",
+            "sortIncrease": true
+          },
+          {
+            "id": "K7ZNYYMVH1X2B",
+            "name": "Illustration - Avatars",
+            "description": "",
+            "children": [],
+            "modificationTime": 1584677336791,
+            "tags": [],
+            "icon": "graph",
+            "password": "",
+            "passwordTips": "",
+            "orderBy": "MANUAL",
+            "sortIncrease": true
+          },
+          {
+            "id": "9e3614ef-ce1d-ac93-af02-12ae1a595b87",
+            "name": "Illustration - Lucas Wakamatsu",
+            "description": "",
+            "children": [],
+            "modificationTime": 1514532502842,
+            "tags": [],
+            "icon": "graph",
+            "password": "",
+            "passwordTips": "",
+            "coverId": "da3054fd-94ee-1b2e-6ec5-bb9802f5c7a1",
+            "orderBy": "MANUAL",
+            "sortIncrease": true
+          },
+          {
+            "id": "fd95a640-55f9-ff15-54e0-155043e44348",
+            "name": "Illustration - UI Design Illustrations",
+            "description": "",
+            "children": [],
+            "modificationTime": 1514530884438,
+            "tags": [
+              "Textures"
+            ],
+            "icon": "graph",
+            "password": "",
+            "passwordTips": "",
+            "coverId": "JSDGCG1TQ2A2V",
+            "orderBy": "MANUAL",
+            "sortIncrease": true
+          },
+          {
+            "id": "5830a048-a19d-0af1-86ba-55723891b7a0",
+            "name": "Illustration - MBE Style",
+            "description": "",
+            "children": [],
+            "modificationTime": 1514530555940,
+            "tags": [],
+            "icon": "graph",
+            "password": "",
+            "passwordTips": "",
+            "coverId": "6d568f4b-be09-80ac-8989-fe6c1562f5f6"
+          },
+          {
+            "id": "JPWGXRBUZ722T",
+            "name": "Illustration - Weird",
+            "description": "",
+            "children": [],
+            "modificationTime": 1545302042778,
+            "tags": [],
+            "icon": "graph",
+            "password": "",
+            "passwordTips": "",
+            "coverId": "JPCI284T29QVM"
+          },
+          {
+            "id": "JVCGQNEBZCQWZ",
+            "name": "Illustration - Icons",
+            "description": "",
+            "children": [],
+            "modificationTime": 1557153081587,
+            "tags": [],
+            "icon": "graph",
+            "password": "",
+            "passwordTips": "",
+            "orderBy": "MANUAL",
+            "sortIncrease": true
+          }
+        ],
+        "modificationTime": 1514532718237,
+        "tags": [],
+        "icon": "graph",
+        "password": "",
+        "passwordTips": "",
+        "coverId": "JS4CPCMWSQ4NT"
+      }
+    ],
+    "smartFolders": [
+      {
+        "id": "JQQAV9CA71QSZ",
+        "icon": "calendar-week",
+        "name": "Last Week",
+        "description": "",
+        "modificationTime": 1542962230621,
+        "conditions": [
+          {
+            "match": "OR",
+            "rules": [
+              {
+                "method": "within",
+                "property": "createTime",
+                "value": [
+                  7
+                ]
+              }
+            ]
+          }
+        ],
+        "orderBy": "FILESIZE",
+        "sortIncrease": true
+      },
+      {
+        "id": "b2ece90b-3692-4f85-a2c5-4b39b8c10206",
+        "icon": "calendar-month",
+        "name": "Last 30 Days",
+        "description": "",
+        "modificationTime": 1542998358475,
+        "conditions": [
+          {
+            "match": "OR",
+            "rules": [
+              {
+                "method": "within",
+                "property": "createTime",
+                "value": [
+                  30
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "7de0bdb8-3124-add7-4a1f-b51f126aa738",
+        "name": "Red Posters",
+        "description": "",
+        "modificationTime": 1564766432167,
+        "conditions": [
+          {
+            "$$hashKey": "object:7456",
+            "match": "AND",
+            "rules": [
+              {
+                "$$hashKey": "object:7462",
+                "method": "intersection",
+                "property": "tags",
+                "value": [
+                  "Poster"
+                ]
+              },
+              {
+                "$$hashKey": "object:7463",
+                "method": "similar",
+                "property": "color",
+                "value": "#ff2600"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "JN03O08107BI0",
+        "name": "Blue Posters",
+        "description": "",
+        "modificationTime": 1517283297754,
+        "conditions": [
+          {
+            "match": "AND",
+            "rules": [
+              {
+                "method": "intersection",
+                "property": "tags",
+                "value": [
+                  "Poster"
+                ]
+              },
+              {
+                "method": "similar",
+                "property": "color",
+                "value": "#0096ff"
+              }
+            ]
+          }
+        ],
+        "orderBy": "RATING",
+        "sortIncrease": false
+      }
+    ],
+    "quickAccess": [
+      {
+        "type": "smartFolder",
+        "id": "7de0bdb8-3124-add7-4a1f-b51f126aa738"
+      }
+    ],
+    "tagsGroups": [
+      {
+        "id": "c549d2a8-c187-c612-617f-83fcef4976a2",
+        "name": "Location",
+        "tags": [
+          "Kitchen"
+        ],
+        "color": "yellow"
+      },
+      {
+        "id": "549c0c05-414f-b114-4832-578e77d937ab",
+        "name": "Movies",
+        "tags": [
+          "Justas Galaburda2",
+          "Brave",
+          "Macbeth",
+          "Captain America",
+          "The Dead",
+          "Ant-Man",
+          "Missing Tags"
+        ],
+        "color": "red"
+      },
+      {
+        "id": "1293781293891211321",
+        "name": "Style",
+        "tags": [
+          "Industry",
+          "Loft",
+          "Flat",
+          "Banner"
+        ]
+      },
+      {
+        "id": "129378129389128391",
+        "name": "Designer",
+        "tags": [
+          "Tadao Ando"
+        ]
+      },
+      {
+        "id": "02b1fcc3-c337-899d-ddec-c2aa88a0e518",
+        "name": "Color",
+        "tags": [
+          "Black",
+          "Yellow",
+          "Orange",
+          "Violet",
+          "Blue",
+          "Green"
+        ]
+      }
+    ],
+    "modificationTime": 1592461625783,
+    "applicationVersion": "1.11.0"
+  }
+}
