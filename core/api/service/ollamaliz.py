@@ -121,29 +121,32 @@ def scan_image_with_llava(
     power = ai_power = read_config(CfgSection.AI.value, CfgList.AI_POWER.value)
     model_name = AiPower.get_llava_from_power(power)
 
-    try:
-        # Getting response from ollama
-        response = send_llava_query(ollama_url, prompt, encoded_string, model_name)
+    # Getting response from ollama
+    response = send_llava_query(ollama_url, prompt, encoded_string, model_name)
 
-        # Checking ollama response and extracting data
-        if response.is_successful():
-            resp_text = response.text
-            resp_text_json = json.loads(resp_text)
-            resp_obj = OllamaResponse.from_json(resp_text_json)
-            print(resp_obj.response)
-            info_json = json.loads(resp_obj.response)
-            output_image = AilizImage(file_path)
-            output_image.set_ai_filename(info_json.get("filename"))
-            output_image.set_ai_description(info_json.get("description"))
-            output_image.set_ai_tags(info_json.get("tags"))
-            output_image.set_ai_text(info_json.get("text"))
-            return resp_obj.response
-        else:
-            error = response.get_error()
-            rich.print("Error while connecting to ollama: " + "[red]" + error + "[/red]")
-            return None
-    except Exception as e:
-        rich.print("Error while analyzing current image: " + "[red]" + e + "[/red]")
+    # Checking ollama response and extracting data
+    # try:
+    #
+    # except Exception as e:
+    #     rich.print("Error while analyzing current image: " + "[red]" + str(e) + "[/red] + [red]" + resp_obj.done_reason + "[/red]")
+    #     return None
+
+    if response.is_successful():
+        resp_text = response.text
+        resp_text_json = json.loads(resp_text)
+        resp_obj = OllamaResponse.from_json(resp_text_json)
+        print(resp_obj.response)
+        info_json = json.loads(resp_obj.response)
+        output_image = AilizImage(file_path)
+        output_image.set_ai_filename(info_json.get("filename"))
+        output_image.set_ai_description(info_json.get("description"))
+        output_image.set_ai_tags(info_json.get("tags"))
+        output_image.set_ai_text(info_json.get("text"))
+        output_image.set_ai_scanned(True)
+        return output_image
+    else:
+        error = response.get_error()
+        rich.print("Error while connecting to ollama: " + "[red]" + error + "[/red]")
         return None
 
 

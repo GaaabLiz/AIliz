@@ -2,6 +2,7 @@ from typing import List
 
 import rich
 import typer
+from yaspin import yaspin
 
 from core.api.data import eagleapi
 from core.api.service import eagleliz
@@ -39,7 +40,7 @@ def eagle_dir_importer(
     count_media_files_paths = len(input_image_files_paths) + len(input_video_files_paths)
     rich.print(f"Found {len(input_image_files_paths)} image files in {input_path}")
     rich.print(f"Found {len(input_video_files_paths)} video files in {input_path}")
-    rich.print(f"Found {count_media_files_paths}/{file_count} media files in total.")
+    # rich.print(f"Found {count_media_files_paths}/{file_count} media files in total.")
 
     # Check if needs ai scan
     with_ai = ai_comment or ai_tag or ai_metadata or ai_rename
@@ -53,5 +54,18 @@ def eagle_dir_importer(
             rich.print(f"Loaded image: {result}")
         else:
             rich.print(f"Image {image_path} will be skipped.")
+
+    # Scanning video files found
+
+    # Upload media files to eagle
+    for image in scanned_images:
+        with yaspin(text="Uploading image" + image.path + " to eagle", color="yellow", side="right") as spinner:
+            result = eagleliz.upload_image(image)
+            if result is not None:
+                spinner.ok("✅ ")
+            else:
+                spinner.fail("💥 ")
+                rich.print("Error while adding image to eagle.")
+
 
 

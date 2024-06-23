@@ -194,7 +194,7 @@ def scan_directory_match_bool(path: str, to_be_add: Callable[[str], bool]) -> Li
 
 
 def is_image_file(path: str) -> bool:
-    image_extensions = ['.png', '.jpg', '.jpeg', '.gif', '.bmp', '.tiff', '.svg']
+    image_extensions = ['.png', '.jpg', '.jpeg', '.gif', '.bmp', '.tiff', '.svg', ".webp"]
     return os.path.splitext(path)[1] in image_extensions
 
 
@@ -224,7 +224,7 @@ def is_file_dup_in_dir(path:str, file_name:str) -> bool:
     return False
 
 
-def get_file_c_date(path_to_file):
+def get_file_c_date(path_to_file) -> datetime:
     """
     Try to get the date that a file was created, falling back to when it was
     last modified if that isn't possible.

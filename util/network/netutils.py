@@ -22,10 +22,10 @@ def exec_get(url: str, sec_timeout: int | None = 10) -> NetResponse:
 def exec_post(
         url: str,
         payload,
-        verify_bool: bool
+        verify_bool: bool,
 ) -> NetResponse:
     try:
-        response = requests.post(url, json=payload, verify=verify_bool)
+        response = requests.post(url, json=payload, verify=verify_bool, allow_redirects=True)
         if response.status_code == 200:
             return NetResponse(response, NetResponseType.OK200)
         else:

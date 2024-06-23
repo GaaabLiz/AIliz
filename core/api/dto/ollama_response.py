@@ -32,18 +32,19 @@ class OllamaResponse:
     @classmethod
     def from_json(cls, data: Dict[str, Any]) -> 'OllamaResponse':
         return cls(
-            model=data["model"],
-            created_at=data["created_at"],
-            response=data["response"],
-            done=data["done"],
-            done_reason=data["done_reason"],
-            context=data["context"],
-            total_duration=data["total_duration"],
-            load_duration=data["load_duration"],
-            prompt_eval_count=data["prompt_eval_count"],
-            prompt_eval_duration=data["prompt_eval_duration"],
-            eval_count=data["eval_count"],
-            eval_duration=data["eval_duration"]
+            # TODO se da problemi mettere none a tutti i get
+            model=data.get("model", ""),
+            created_at=data.get("created_at", ""),
+            response=data.get("response", ""),
+            done=data.get("done", False),
+            done_reason=data.get("done_reason", ""),
+            context=data.get("context", []),
+            total_duration=data.get("total_duration", 0),
+            load_duration=data.get("load_duration", 0),
+            prompt_eval_count=data.get("prompt_eval_count", 0),
+            prompt_eval_duration=data.get("prompt_eval_duration", 0),
+            eval_count=data.get("eval_count", 0),
+            eval_duration=data.get("eval_duration", 0)
         )
 
     def __str__(self) -> str:

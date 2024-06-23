@@ -13,10 +13,12 @@ class AilizImage:
         self.ai_file_name = None
         self.ai_description = None
         self.ai_tags = None
+        self.ai_scanned = False
         self.path = image_path
         self.file_name = os.path.basename(self.path)
         self.extension = os.path.splitext(image_path)[1].lower()
         self.creation_time = osutils.get_file_c_date(self.path)
+        self.creation_time_timestamp: float = self.creation_time.timestamp()
         self.year, self.month, self.day = self.creation_time.year, self.creation_time.month, self.creation_time.day
         self.size_byte = os.path.getsize(self.path)
         self.size_mb = self.size_byte / (1024 * 1024)
@@ -48,6 +50,9 @@ class AilizImage:
 
     def set_ai_text(self, text):
         self.ai_text = text
+
+    def set_ai_scanned(self, scanned):
+        self.ai_scanned = scanned
 
     # def get_creation_time(self):
     #     try:
