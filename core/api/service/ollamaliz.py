@@ -106,45 +106,55 @@ def download_model(ollama_url: str, model_name: str):
 
 def scan_image_with_llava(
         file_path: str,
-        power: AiPower,
-) -> AilizImage | None:
+) -> str | None:
 
     # Converting image to base64
     with open(file_path, "rb") as image_file:
         encoded_string = base64.b64encode(image_file.read()).decode('utf-8')
 
     # Reading prompt from resources
-    with open("./resources/llava_prompt.txt", "r") as file:
+    with open("./resources/llava_prompt2.txt", "r") as file:
         prompt = file.read()
 
-    # Reading ollama url from config
+    # Reading ollama/ai config
     ollama_url = read_config(CfgSection.AI.value, CfgList.OLLAMA_URL.value)
+    power = ai_power = read_config(CfgSection.AI.value, CfgList.AI_POWER.value)
+    model_name = AiPower.get_llava_from_power(power)
 
     try:
         # Getting response from ollama
-        response = send_llava_query(ollama_url, prompt, encoded_string, "llava:13b")
+        response = send_llava_query(ollama_url, prompt, encoded_string, model_name)
 
         # Checking ollama response and extracting data
         if response.is_successful():
             resp_text = response.text
             resp_text_json = json.loads(resp_text)
             resp_obj = OllamaResponse.from_json(resp_text_json)
-            def_json = json.loads(resp_obj.response)
-            print("Tags: ", def_json.get("tags", []))
-            print("Description: ", def_json.get("description", ""))
-            print("Text: ", def_json.get("text", ""))
-            print("filename: ", def_json.get("filename", ""))
-            elapsed_seconds = resp_obj.total_duration / 1_000_000_000
-            rich.print("Elapsed time: " + "[bold blue]" + str(elapsed_seconds) + "[/bold blue]" + " seconds")
-            image = AilizImage(file_path)
-            image.set_ai_tags(def_json.get("tags", []))
-            return image
+            return resp_obj.response
         else:
             error = response.get_error()
-            print("Error while connecting to ollama: " + "[red]" + error + "[/red]")
+            rich.print("Error while connecting to ollama: " + "[red]" + error + "[/red]")
             return None
     except Exception as e:
-        print("Error while analyzing current image: " + "[red]" + e + "[/red]")
+        rich.print("Error while analyzing current image: " + "[red]" + e + "[/red]")
         return None
 
 
+# def get_tags_from_llava_result(llava_result:str):
+#     try:
+#         # Getting response from ollama
+#         response = send_llava_query(ollama_url, prompt, encoded_string, model_name)
+#
+#         # Checking ollama response and extracting data
+#         if response.is_successful():
+#             resp_text = response.text
+#             resp_text_json = json.loads(resp_text)
+#             resp_obj = OllamaResponse.from_json(resp_text_json)
+#             return resp_obj.response
+#         else:
+#             error = response.get_error()
+#             rich.print("Error while connecting to ollama: " + "[red]" + error + "[/red]")
+#             return None
+#     except Exception as e:
+#         rich.print("Error while analyzing current image: " + "[red]" + e + "[/red]")
+#         return None
