@@ -194,7 +194,7 @@ def scan_directory_match_bool(path: str, to_be_add: Callable[[str], bool]) -> Li
 
 
 def is_image_file(path: str) -> bool:
-    image_extensions = ['.png', '.jpg', '.jpeg', '.gif', '.bmp', '.tiff', '.svg', ".webp"]
+    image_extensions = ['.png', '.jpg', '.jpeg', '.gif', '.bmp', '.tiff', '.svg']
     return os.path.splitext(path)[1] in image_extensions
 
 

@@ -1,13 +1,17 @@
 import typer
 
 from cli.asker import ask_ollama_location, ask_ai_power
+from core.enum.literals import APP_NAME
 from core.util.cfgutils import *
 from core.api.service.ollamaliz import check_ollama, download_models_list, download_required_models
 from util import osutils
 from rich import print
+from util.loggiz import LoggizLogger as logger
+
+from util.loggiz import Loggiz
 
 
-def handle_not_initialized():
+def __handle_not_initialized():
     print("Application not initialized.")
     print("Rerun application with [green]init[/green] command to start.")
     raise typer.Exit()
@@ -17,7 +21,7 @@ def check_init(called_from_init: bool = False):
     file_exist = osutils.check_path(dir_app_setting)
     if not file_exist:
         if not called_from_init:
-            handle_not_initialized()
+            __handle_not_initialized()
         else:
             return
     init = read_config(CfgSection.GENERAL.value, CfgList.INIT.value, True)
@@ -31,7 +35,7 @@ def check_init(called_from_init: bool = False):
         if called_from_init:
             return
         else:
-            handle_not_initialized()
+            __handle_not_initialized()
 
 
 def delete_init():
@@ -68,6 +72,17 @@ def setup_ollama_models():
     ai_power = read_config(CfgSection.AI.value, CfgList.AI_POWER.value)
     model_list = download_models_list(ollama_url)
     download_required_models(ai_power, model_list)
+
+
+def setup_file_logging():
+    Loggiz.setup(
+        app_name=APP_NAME,
+        setup_console=False,
+        file_log_base_path=dir_app,
+        file_log_folder_name="logs",
+    )
+    logger.debug_tag("APP", "File logging set.")
+
 
 
 def exec_init():

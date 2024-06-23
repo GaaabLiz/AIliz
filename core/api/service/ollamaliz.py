@@ -124,13 +124,6 @@ def scan_image_with_llava(
     # Getting response from ollama
     response = send_llava_query(ollama_url, prompt, encoded_string, model_name)
 
-    # Checking ollama response and extracting data
-    # try:
-    #
-    # except Exception as e:
-    #     rich.print("Error while analyzing current image: " + "[red]" + str(e) + "[/red] + [red]" + resp_obj.done_reason + "[/red]")
-    #     return None
-
     if response.is_successful():
         resp_text = response.text
         resp_text_json = json.loads(resp_text)

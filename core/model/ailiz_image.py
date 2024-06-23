@@ -1,5 +1,6 @@
 import os
 from datetime import datetime
+from typing import List
 
 from core.enum.media_path_format import MediaPathFormat
 from util import osutils
@@ -9,7 +10,7 @@ from util.datautils import convert_months_number_to_str
 class AilizImage:
 
     def __init__(self, image_path):
-        self.ai_text = None
+        self.ai_text: List[str] | None = None
         self.ai_file_name = None
         self.ai_description = None
         self.ai_tags = None
@@ -53,6 +54,11 @@ class AilizImage:
 
     def set_ai_scanned(self, scanned):
         self.ai_scanned = scanned
+
+    def get_desc_plus_text(self):
+        if self.ai_text is not None and len(self.ai_text) > 0:
+            return self.ai_description + " This image includes texts: " + self.ai_text
+        return self.ai_description
 
     # def get_creation_time(self):
     #     try:

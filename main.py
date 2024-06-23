@@ -40,6 +40,7 @@ def eagle_imp(
         ai_rename: bool = False,
 ):
     core.controller.init.check_init()
+    core.controller.init.setup_file_logging()
     eagle_dir_importer(input_path, ai_comment, ai_tag, ai_metadata, ai_rename)
 
 

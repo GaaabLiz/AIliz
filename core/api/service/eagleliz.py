@@ -64,7 +64,7 @@ def upload_image(image: AilizImage) -> EagleDto | None:
         path=image.path,
         name=image.ai_file_name,
         tags=image.ai_tags,
-        annotation=image.ai_description,
+        annotation=image.get_desc_plus_text(),
         modification_time=image.creation_time_timestamp,
     )
     print(resp_obj.json)

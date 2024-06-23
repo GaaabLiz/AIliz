@@ -52,20 +52,18 @@ def eagle_dir_importer(
         if result is not None:
             scanned_images.append(result)
             rich.print(f"Loaded image: {result}")
-        else:
-            rich.print(f"Image {image_path} will be skipped.")
-
-    # Scanning video files found
-
-    # Upload media files to eagle
-    for image in scanned_images:
-        with yaspin(text="Uploading image" + image.path + " to eagle", color="yellow", side="right") as spinner:
-            result = eagleliz.upload_image(image)
+            with yaspin(text="Uploading image" + result.path + " to eagle", color="yellow", side="right") as spinner:
+                result = eagleliz.upload_image(result)
             if result is not None:
                 spinner.ok("✅ ")
             else:
                 spinner.fail("💥 ")
                 rich.print("Error while adding image to eagle.")
+        else:
+            rich.print(f"Image {image_path} will be skipped.")
+
+    # Scanning video files found
+
 
 
 
