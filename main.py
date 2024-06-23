@@ -2,6 +2,7 @@ import typer
 
 import core.controller.init
 import core.controller.media
+from core.controller import scan
 from core.controller.eagle_imp import *
 
 app = typer.Typer()
@@ -15,6 +16,7 @@ def scan_image(
         create_ailiz_file: bool = False,
 ):
     core.controller.init.check_init()
+    scan.scan_image(image_path, ai_scan)
 
 
 @app.command()

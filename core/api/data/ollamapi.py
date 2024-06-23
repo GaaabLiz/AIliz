@@ -19,7 +19,21 @@ def get_installed_models(url) -> NetResponse:
     return exec_get(api_url)
 
 
-def llava_image(
+def send_query(
+        url: str,
+        prompt: str,
+        model_name: str,
+) -> NetResponse:
+    api_url = url + "/api/generate"
+    payload = {
+        "model": model_name,
+        "prompt": prompt,
+        "stream": False
+    }
+    return exec_post(api_url, payload, False)
+
+
+def send_llava_query(
         url: str,
         prompt: str,
         image_base_64: str,

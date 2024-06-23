@@ -8,7 +8,7 @@ import typer
 from core.api.dto.ollama_response import OllamaResponse
 from core.enum.ai_power import AiPower
 from core.api.dto.ollama_model import OllamaModel
-from core.api.data.ollamapi import check_ollama_status, get_installed_models, llava_image
+from core.api.data.ollamapi import check_ollama_status, get_installed_models, send_llava_query
 from core.model.ailiz_image import AilizImage
 from core.util.cfgutils import read_config
 from core.enum.cfglist import CfgList
@@ -122,7 +122,7 @@ def scan_image_with_llava(
 
     try:
         # Getting response from ollama
-        response = llava_image(ollama_url, prompt, encoded_string, "llava:13b")
+        response = send_llava_query(ollama_url, prompt, encoded_string, "llava:13b")
 
         # Checking ollama response and extracting data
         if response.is_successful():
