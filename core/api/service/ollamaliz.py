@@ -106,14 +106,14 @@ def download_model(ollama_url: str, model_name: str):
 
 def scan_image_with_llava(
         file_path: str,
-) -> str | None:
+) -> AilizImage | None:
 
     # Converting image to base64
     with open(file_path, "rb") as image_file:
         encoded_string = base64.b64encode(image_file.read()).decode('utf-8')
 
     # Reading prompt from resources
-    with open("./resources/llava_prompt2.txt", "r") as file:
+    with open("./resources/llava_prompt3.txt", "r") as file:
         prompt = file.read()
 
     # Reading ollama/ai config
@@ -130,6 +130,13 @@ def scan_image_with_llava(
             resp_text = response.text
             resp_text_json = json.loads(resp_text)
             resp_obj = OllamaResponse.from_json(resp_text_json)
+            print(resp_obj.response)
+            info_json = json.loads(resp_obj.response)
+            output_image = AilizImage(file_path)
+            output_image.set_ai_filename(info_json.get("filename"))
+            output_image.set_ai_description(info_json.get("description"))
+            output_image.set_ai_tags(info_json.get("tags"))
+            output_image.set_ai_text(info_json.get("text"))
             return resp_obj.response
         else:
             error = response.get_error()

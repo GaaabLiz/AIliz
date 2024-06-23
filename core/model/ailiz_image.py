@@ -9,6 +9,9 @@ from util.datautils import convert_months_number_to_str
 class AilizImage:
 
     def __init__(self, image_path):
+        self.ai_text = None
+        self.ai_file_name = None
+        self.ai_description = None
         self.ai_tags = None
         self.path = image_path
         self.file_name = os.path.basename(self.path)
@@ -36,6 +39,15 @@ class AilizImage:
 
     def set_ai_tags(self, tags):
         self.ai_tags = tags
+
+    def set_ai_description(self, description):
+        self.ai_description = description
+
+    def set_ai_filename(self, filename):
+        self.ai_file_name = filename
+
+    def set_ai_text(self, text):
+        self.ai_text = text
 
     # def get_creation_time(self):
     #     try:

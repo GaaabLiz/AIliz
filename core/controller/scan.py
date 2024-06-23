@@ -30,13 +30,7 @@ def scan_image(
                 spinner.fail("💥 ")
                 rich.print("Error while scanning image with llava.")
 
-        # Getting tags from llava result
-
-
-
-
-        image = AilizImage(file_path)
-        return image
+        return llava_result
     else:
         rich.print("Scanning image " + file_path + "...")
         return AilizImage(file_path)

@@ -1,5 +1,5 @@
 Return a JSON object with the following keys: 'description', 'tags', 'filename', 'text'.
 - The 'description' value must contain a detailed description of the image (minimum 15-20 words), considering colors, objects, actions, and any other relevant details.
-- The 'tags' value must be a list of strings that summarize key elements and themes of the image. Include specific objects, actions, locations, and any discernible themes. (minimum 5 maximum 10 tags)
+- The 'tags' value must be a list of strings that summarize key elements and themes of the image. Include specific objects, actions, locations, and any discernible themes. (minimum 5 maximum 10 tags). don't include emoji.
 - The 'filename' value must be a concise phrase that summarizes the image content (maximum 30 characters).
 - The 'text' value must be a list of phrases that are actually written in the image. Use OCR to extract text from the image. If there is no text in the image, return an empty list. Pay particular attention to memes, ensuring any overlaid text is captured accurately.

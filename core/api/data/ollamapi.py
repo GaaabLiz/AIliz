@@ -44,6 +44,7 @@ def send_llava_query(
         "model": model_name,
         "prompt": prompt,
         "images": [image_base_64],
+        "format": "json",
         "stream": False
     }
     return exec_post(api_url, payload, False)
